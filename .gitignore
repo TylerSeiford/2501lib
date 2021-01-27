@@ -1,0 +1,6 @@
+*.out
+*.o
+*.tar.gz
+.vscode
+*.a
+*.exe
