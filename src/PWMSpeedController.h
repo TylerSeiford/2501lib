@@ -9,9 +9,13 @@ class PWMSpeedController : public SpeedController {
 	PWM *pwm;
 
  public:
+	/**
+	 * @brief Construct a new PWMSpeedController object
+	 * 
+	 * @param hat ServoHat to use
+	 * @param channel PWM channel on the ServoHat to use
+	 */
 	PWMSpeedController(ServoHat *hat, uint8_t channel);
-
-	PWMSpeedController(ServoHat &hat, uint8_t channel);
 
 	/**
 	 * @brief Set the SpeedController to a speed

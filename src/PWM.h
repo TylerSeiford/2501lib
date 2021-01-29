@@ -29,14 +29,6 @@ class PWM {
 	 */
     PWM(ServoHat *hat, uint8_t channel);
 
-	/**
-	 * @brief Construct a new PWM object
-	 * 
-	 * @param hat Servo Hat object to use
-	 * @param channel Channel to use
-	 */
-    PWM(ServoHat &hat, uint8_t channel);
-
     /**
 	 * @brief Set the channel to a speed
 	 *

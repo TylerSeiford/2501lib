@@ -67,6 +67,6 @@ sudo dpkg -i wiringpi-latest.deb
 echo -e '\033[1;36m***** INSTALLING 2501LIB *****\033[0m'
 cd $DIR/src
 echo -e '\033[1;36m - Building library\033[0m'
-make
+make clean && make
 echo -e '\033[1;36m - Installing library\033[0m'
 sudo make install

@@ -15,13 +15,6 @@ DifferentialDrive::DifferentialDrive(SpeedController *lf, SpeedController *lr, S
 	DifferentialDrive::rr = rr;
 }
 
-DifferentialDrive::DifferentialDrive(SpeedController &lf, SpeedController &lr, SpeedController &rf, SpeedController &rr) {
-	DifferentialDrive::lf = &lf;
-	DifferentialDrive::lr = &lr;
-	DifferentialDrive::rf = &rf;
-	DifferentialDrive::rr = &rr;
-}
-
 void DifferentialDrive::TankDrive(double left, double right) {
 	if(invertLeft)
 		left *= -1.0;

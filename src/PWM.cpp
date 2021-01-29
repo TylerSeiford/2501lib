@@ -43,20 +43,6 @@ PWM::PWM(ServoHat *hat, uint8_t channel) {
 	SetMinUs(1050U);
 }
 
-PWM::PWM(ServoHat &hat, uint8_t channel) {
-	if(channel > ServoHat::MAX_CHANNELS) {
-		std::cerr << "Channel number is larger than " << ServoHat::MAX_CHANNELS << "\n";
-		exit(-1);
-	}
-
-	PWM::hat = &hat;
-	PWM::channel = channel;
-
-	SetMaxUs(2050U);
-	SetCenterUs(1550U);
-	SetMinUs(1050U);
-}
-
 void PWM::Set(double speed) {
 	hat->SetInternal(channel, DoubleToValue(speed), true);
 }

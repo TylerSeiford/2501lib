@@ -43,11 +43,13 @@ void RobotBase::Run() {
 
 
 	while(running) {
-		// Sleep for 1ms
+		// Sleep for period
 		usleep(period);
 
+		// Update joystick values
 		stick->Update();
 
+		// Deal with start button for enable/disable
 		if(stick->HasButtonChanged(GAMEPAD::BUTTONS::START) && stick->GetButton(GAMEPAD::BUTTONS::START)) {
 			if(!enabled) {
 				enabled = true;
@@ -70,10 +72,13 @@ void RobotBase::Run() {
 
 		RobotPeriodic();
 	}
+
+	// Cleanup
 	if(enabled) {
 		enabled = false;
 		hat->Disable();
 		DisabledInit();
 	}
+
 	Shutdown();
 }

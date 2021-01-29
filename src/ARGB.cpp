@@ -4,8 +4,10 @@
 
 
 ARGB::ARGB(int32_t ledCount) {
+	// Save the given LED count
 	ARGB::ledCount = ledCount;
-	
+
+	// Setup the ledString object for usage by the ws281x library	
 	ledString.freq = WS2811_TARGET_FREQ;
 	ledString.dmanum = 10;
 	ledString.channel[0].gpionum = 21;
@@ -18,8 +20,10 @@ ARGB::ARGB(int32_t ledCount) {
 	ledString.channel[1].invert = 0;
 	ledString.channel[1].brightness = 0;
 
+	// Initialize the ws281x library
 	ws2811_return_t ret = ws2811_init(&ledString);
 
+	// If that failed, print an error and exit the program
 	if (ret != WS2811_SUCCESS) {
 		fprintf(stderr, "ws2811_init failed: %s\n", ws2811_get_return_t_str(ret));
 		exit(ret);
@@ -27,12 +31,15 @@ ARGB::ARGB(int32_t ledCount) {
 }
 
 ARGB::~ARGB() {
+	// Set all LEDs to BLACK (off)
 	for (int x = 0; x < ledCount; x++) {
 		ledString.channel[0].leds[x] = COLORS::BLACK;
 	}
 
+	// Render the change
 	ws2811_render(&ledString);
 
+	// Call lower library function to cleanup DMA
 	ws2811_fini(&ledString);
 }
 
