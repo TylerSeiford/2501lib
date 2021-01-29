@@ -2,6 +2,10 @@
 
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 
+# Install cmake
+echo -e '\033[1;36m***** INSTALLING CMAKE *****\033[0m'
+sudo apt install cmake
+
 # Download and extract BCM2835 library
 echo -e '\033[1;36m***** INSTALLING BCM2835 *****\033[0m'
 cd /tmp
