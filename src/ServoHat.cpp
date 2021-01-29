@@ -32,7 +32,7 @@ ServoHat::ServoHat() {
 	hat->SetOutDriver(true);
 	hat->SetFrequency(50);
 
-	values = new uint16_t[16];
+	values = new uint16_t[MAX_CHANNELS];
 	for(uint8_t i = 0; i < MAX_CHANNELS; i++) {
 		values[i] = 90U;
 	}
@@ -43,7 +43,7 @@ void ServoHat::Enable() {
 		return;
 
 	enabled = true;
-	for(uint8_t i = 0; i < 16; i++) {
+	for(uint8_t i = 0; i < MAX_CHANNELS; i++) {
 		SetInternal(i, values[i], false);
 	}
 }
@@ -53,7 +53,7 @@ void ServoHat::Disable() {
 		return;
 
 	enabled = false;
-	for(uint8_t i = 0; i < 16; i++) {
+	for(uint8_t i = 0; i < MAX_CHANNELS; i++) {
 		SetInternal(i, 90U, false);
 	}
 }

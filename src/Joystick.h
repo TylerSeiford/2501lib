@@ -1,5 +1,7 @@
 #pragma once
 
+#include <string>
+
 
 // Gamepad button & axis mapping
 namespace GAMEPAD {
