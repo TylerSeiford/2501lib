@@ -17,7 +17,9 @@ DifferentialDrive::DifferentialDrive(SpeedController *lf, SpeedController *lr, S
 
 DifferentialDrive::DifferentialDrive(SpeedController *l, SpeedController *r) {
 	DifferentialDrive::lf = l;
+	DifferentialDrive::lr = nullptr;
 	DifferentialDrive::rf = r;
+	DifferentialDrive::rr = nullptr;
 }
 
 void DifferentialDrive::TankDrive(double left, double right) {
