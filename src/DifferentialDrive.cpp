@@ -15,16 +15,25 @@ DifferentialDrive::DifferentialDrive(SpeedController *lf, SpeedController *lr, S
 	DifferentialDrive::rr = rr;
 }
 
+DifferentialDrive::DifferentialDrive(SpeedController *l, SpeedController *r) {
+	DifferentialDrive::lf = l;
+	DifferentialDrive::rf = r;
+}
+
 void DifferentialDrive::TankDrive(double left, double right) {
 	if(invertLeft)
 		left *= -1.0;
 	if(invertRight)
 		right *= -1.0;
 
-	DifferentialDrive::lf->Set(left);
-	DifferentialDrive::lr->Set(left);
-	DifferentialDrive::rf->Set(right);
-	DifferentialDrive::rr->Set(right);
+	if(lf != nullptr)
+		lf->Set(left);
+	if(lr != nullptr)
+		lr->Set(left);
+	if(rf != nullptr)
+		rf->Set(right);
+	if(rr != nullptr)
+		rr->Set(right);
 }
 
 void DifferentialDrive::ArcadeDrive(double forward, double rotation) {

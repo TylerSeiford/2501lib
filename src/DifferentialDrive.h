@@ -25,6 +25,14 @@ class DifferentialDrive {
 	DifferentialDrive(SpeedController *lf, SpeedController *lr, SpeedController *rf, SpeedController *rr);
 
 	/**
+	 * @brief Construct a new Differential Drive object
+	 * 
+	 * @param l Left SpeedController
+	 * @param r Right SpeedController
+	 */
+	DifferentialDrive(SpeedController *l, SpeedController *r);
+
+	/**
 	 * @brief Drive with tank drive left and right controls
 	 * 
 	 * @param left Speed for left motors
