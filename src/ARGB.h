@@ -27,6 +27,7 @@ namespace COLORS {
 	constexpr ws2811_led_t	BLUE		= 0x000000FF;
 	constexpr ws2811_led_t	PURPLE		= 0x00800080;
 	constexpr ws2811_led_t	PINK		= 0x00FF0080;
+	constexpr ws2811_led_t	WHITE		= 0x00FFFFFF;
 	constexpr ws2811_led_t	BLACK		= 0x00000000;
 }
 

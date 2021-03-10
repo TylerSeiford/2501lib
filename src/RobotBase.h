@@ -5,6 +5,13 @@
 #include "ServoHat.h"
 #include "Joystick.h"
 
+
+enum RobotState {
+	DISABLED = 0,
+	TELEOP = 1,
+	AUTONOMOUS = 2
+};
+
 /**
  * @brief Handler for CTRL+C (SIGKILL & SIGTERM)
  */
@@ -29,7 +36,7 @@ class RobotBase {
 	uint8_t START_BUTTON, SELECT_BUTTON;
 
 	// Boolean to track if we are enabled or not
-	bool enabled = false;
+	RobotState state = DISABLED;
 		// TODO: This should become a uint8_t for the state being between disabled, auto, and teleop
 	// Period of a loop in microseconds
 	uint32_t period;
@@ -105,6 +112,16 @@ class RobotBase {
 	 * @brief This function is called every loop when the robot is in Teleop mode
 	 */
 	virtual void TeleopPeriodic() = 0;
+
+	/**
+	 * @brief This function is called when the robot enters Autonomous mode
+	 */
+	virtual void AutonomousInit() = 0;
+
+	/**
+	 * @brief This function is called every loop when the robot is in Autonomous mode
+	 */
+	virtual void AutonomousPeriodic() = 0;
 
 	/**
 	 * @brief This function is called when the robot enters Disabled mode

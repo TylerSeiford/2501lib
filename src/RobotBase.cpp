@@ -53,22 +53,37 @@ void RobotBase::Run() {
 		// Update joystick values
 		stick->Update();
 
-		// Deal with start button for enable/disable
+		// Deal with start button for enable/disable teleop
 		if(stick->HasButtonChanged(START_BUTTON) && stick->GetButton(START_BUTTON)) {
-			if(!enabled) {
-				enabled = true;
+			if(state == DISABLED) {
+				state = TELEOP;
 				hat->Enable();
 				TeleopInit();
 			}
 			else {
-				enabled = false;
+				state = DISABLED;
+				hat->Disable();
+				DisabledInit();
+			}
+		}
+		else if(stick->HasButtonChanged(SELECT_BUTTON) && stick->GetButton(SELECT_BUTTON)) {
+			if(state == DISABLED) {
+				state = AUTONOMOUS;
+				hat->Enable();
+				AutonomousInit();
+			}
+			else {
+				state = DISABLED;
 				hat->Disable();
 				DisabledInit();
 			}
 		}
 
-		if(enabled) {
+		if(state == TELEOP) {
 			TeleopPeriodic();
+		}
+		else if(state == AUTONOMOUS) {
+			AutonomousPeriodic();
 		}
 		else {
 			DisabledPeriodic();
@@ -78,8 +93,8 @@ void RobotBase::Run() {
 	}
 
 	// Cleanup
-	if(enabled) {
-		enabled = false;
+	if(state) {
+		state = DISABLED;
 		hat->Disable();
 		DisabledInit();
 	}
