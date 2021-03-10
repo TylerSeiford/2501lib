@@ -4,6 +4,7 @@
 
 
 // Gamepad button & axis mapping
+// NOTE: This may or may not work for your gamepad, you may have to make your own button mapping.
 namespace GAMEPAD {
 	namespace BUTTONS {
 		constexpr uint8_t A = 0;

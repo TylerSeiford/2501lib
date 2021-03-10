@@ -22,16 +22,20 @@ static void setup_handlers() {
 
 volatile bool RobotBase::running;
 
-RobotBase::RobotBase(Joystick *stick, ServoHat *hat) {
+RobotBase::RobotBase(Joystick *stick, ServoHat *hat, const uint8_t START_BUTTON, const uint8_t SELECT_BUTTON) {
 	period = 20000U;
 	RobotBase::stick = stick;
 	RobotBase::hat = hat;
+	RobotBase::START_BUTTON = START_BUTTON;
+	RobotBase::SELECT_BUTTON = SELECT_BUTTON;
 }
 
-RobotBase::RobotBase(Joystick *stick, ServoHat *hat, uint32_t period) {
+RobotBase::RobotBase(Joystick *stick, ServoHat *hat, const uint8_t START_BUTTON, const uint8_t SELECT_BUTTON, uint32_t period) {
 	RobotBase::period = period;
 	RobotBase::stick = stick;
 	RobotBase::hat = hat;
+	RobotBase::START_BUTTON = START_BUTTON;
+	RobotBase::SELECT_BUTTON = SELECT_BUTTON;
 }
 
 void RobotBase::Run() {
@@ -50,7 +54,7 @@ void RobotBase::Run() {
 		stick->Update();
 
 		// Deal with start button for enable/disable
-		if(stick->HasButtonChanged(GAMEPAD::BUTTONS::START) && stick->GetButton(GAMEPAD::BUTTONS::START)) {
+		if(stick->HasButtonChanged(START_BUTTON) && stick->GetButton(START_BUTTON)) {
 			if(!enabled) {
 				enabled = true;
 				hat->Enable();

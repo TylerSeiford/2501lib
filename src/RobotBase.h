@@ -26,8 +26,11 @@ class RobotBase {
 	// Boolean to track if we have had a CTRL+C yet
 	static volatile bool running;
 
+	uint8_t START_BUTTON, SELECT_BUTTON;
+
 	// Boolean to track if we are enabled or not
 	bool enabled = false;
+		// TODO: This should become a uint8_t for the state being between disabled, auto, and teleop
 	// Period of a loop in microseconds
 	uint32_t period;
 
@@ -52,18 +55,22 @@ class RobotBase {
 	 * 
 	 * @param stick Joystick to use
 	 * @param hat ServoHat to use
-	 * Uses a period of 20,000 microseconds, or 50 times a second.
+	 * @param START_BUTTON button ID for the start button
+	 * @param SELECT_BUTTON button ID for the select button
+	 * Uses a period of 20,000 microseconds, or 50 times a second
 	 */
-	RobotBase(Joystick *stick, ServoHat *hat);
+	RobotBase(Joystick *stick, ServoHat *hat, const uint8_t START_BUTTON, const uint8_t SELECT_BUTTON);
 
 	/**
 	 * @brief Construct a new Robot Base object
 	 * 
 	 * @param stick Joystick to use
 	 * @param hat ServoHat to use
+	 * @param START_BUTTON button ID for the start button
+	 * @param SELECT_BUTTON button ID for the select button
 	 * @param period Period of a loop in microseconds
 	 */
-	RobotBase(Joystick *stick, ServoHat *hat, uint32_t period);
+	RobotBase(Joystick *stick, ServoHat *hat, const uint8_t START_BUTTON, const uint8_t SELECT_BUTTON, uint32_t period);
 
 	/**
 	 * @brief Run the robot program
