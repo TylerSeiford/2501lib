@@ -44,7 +44,7 @@ PWM::PWM(ServoHat *hat, uint8_t channel) {
 }
 
 void PWM::Set(double speed) {
-	hat->SetInternal(channel, DoubleToValue(speed), true);
+	SetRaw(DoubleToValue(speed));
 }
 
 void PWM::SetAngle(uint8_t angle) {
@@ -52,7 +52,11 @@ void PWM::SetAngle(uint8_t angle) {
 }
 
 void PWM::SetPercent(double p) {
-	hat->SetInternal(channel, p * MAX_12_BIT, true);
+	SetRaw(p * MAX_12_BIT);
+}
+
+void PWM::SetRaw(uint16_t value) {
+	hat->SetRaw(channel, value);
 }
 
 void PWM::SetMaxUs(uint16_t max_us) {

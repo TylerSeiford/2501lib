@@ -3,6 +3,7 @@
 #include "Version.h"
 
 #include <iostream>
+#include <chrono>
 #include <unistd.h>
 #include <signal.h>
 
@@ -47,8 +48,7 @@ void RobotBase::Run() {
 
 
 	while(running) {
-		// Sleep for period
-		usleep(period);
+		auto start = std::chrono::high_resolution_clock::now();
 
 		// Update joystick values
 		stick->Update();
@@ -90,6 +90,15 @@ void RobotBase::Run() {
 		}
 
 		RobotPeriodic();
+
+		auto elapsed = std::chrono::high_resolution_clock::now() - start;
+		uint64_t microseconds = std::chrono::duration_cast<std::chrono::microseconds>(elapsed).count();
+		if(microseconds > period) {
+			std::cout << "[2501]\t" << "Loop overrun!\n";
+		}
+		else {
+			usleep(period - microseconds);
+		}
 	}
 
 	// Cleanup
