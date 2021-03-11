@@ -4,7 +4,7 @@
 #include "PWM.h"
 
 
-class PWMSpeedController : public SpeedController {
+class PWMSpeedController : public SpeedController, public MotorSafety {
  private:
 	PWM *pwm;
 
@@ -23,4 +23,9 @@ class PWMSpeedController : public SpeedController {
 	 * @param speed Speed to set it to
 	 */
 	void Set(double speed);
+
+	/**
+	 * @brief Function to stop the motor
+	 */
+	void StopMotor();
 };

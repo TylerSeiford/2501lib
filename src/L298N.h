@@ -5,7 +5,7 @@
 #include "DigitalOutput.h"
 
 
-class L298N : public SpeedController {
+class L298N : public SpeedController, public MotorSafety {
  private:
 	// PWM object to interact with the ServoHat
 	PWM *pwm;
@@ -29,4 +29,9 @@ class L298N : public SpeedController {
 	 * @param speed Speed to set it to
 	 */
 	void Set(double speed);
+
+	/**
+	 * @brief Function to stop the motor
+	 */
+	void StopMotor();
 };

@@ -7,6 +7,7 @@ L298N::L298N(ServoHat *hat, uint8_t channel, uint8_t in1, uint8_t in2) {
 	pwm = new PWM(hat, channel);
 	o1 = new DigitalOutput(in1);
 	o2 = new DigitalOutput(in2);
+	hat->RegisterMotor(this);
 }
 
 void L298N::Set(double speed) {
@@ -25,4 +26,8 @@ void L298N::Set(double speed) {
 		o2->Set(false);
 		pwm->SetPercent(speed);
 	}
+}
+
+void L298N::StopMotor() {
+	Set(0.0);
 }

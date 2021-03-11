@@ -1,6 +1,10 @@
 #pragma once
 
+#include <set>
+
 #include "pca9685.h"
+
+#include "MotorSafety.h"
 
 
 class PWM; // Class prototype
@@ -12,6 +16,8 @@ class ServoHat {
 	PCA9685 *hat;
 	// Array to store the values of the servos
 	uint16_t *values;
+	// Set of motors for safety
+	std::set<MotorSafety *> motors;
 	// If the hat is enabled
 	bool enabled = false;
 
@@ -54,4 +60,11 @@ class ServoHat {
 	 * @return true if enabled, false if disabled
 	 */
 	bool IsEnabled();
+
+	/**
+	 * @brief Register a MotorSafety with the hat
+	 *
+	 * @param motor MotorSafety to register
+	 */
+	void RegisterMotor(MotorSafety *motor);
 };

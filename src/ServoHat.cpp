@@ -23,6 +23,10 @@ void ServoHat::SetRaw(uint8_t channel, uint16_t value) {
 	SetInternal(channel, value, true);
 }
 
+void ServoHat::RegisterMotor(MotorSafety *motor) {
+	motors.insert(motor);
+}
+
 ServoHat::ServoHat() {
 	if (getuid() != 0) {
 		fprintf(stderr, "Program is not started as \'root\' (sudo)\n");
@@ -36,6 +40,7 @@ ServoHat::ServoHat() {
 
 	hat = new PCA9685();
 	hat->SetInvert(false);
+	hat->SetOutDriver(true);
 	hat->SetFrequency(50);
 
 	values = new uint16_t[MAX_CHANNELS];
@@ -44,7 +49,6 @@ ServoHat::ServoHat() {
 	}
 
 	enabled = false;
-	hat->SetOutDriver(false);
 }
 
 void ServoHat::Enable() {
@@ -52,15 +56,16 @@ void ServoHat::Enable() {
 		return;
 
 	enabled = true;
-	hat->SetOutDriver(true);
 }
 
 void ServoHat::Disable() {
 	if(!enabled)
 		return;
 
+	for(MotorSafety *motor : motors) {
+		motor->StopMotor();
+	}
 	enabled = false;
-	hat->SetOutDriver(false);
 }
 
 bool ServoHat::IsEnabled() {
