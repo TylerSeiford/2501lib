@@ -35,9 +35,8 @@ class RobotBase {
 
 	uint8_t START_BUTTON, SELECT_BUTTON;
 
-	// Boolean to track if we are enabled or not
+	// Track if we are enabled or not
 	RobotState state = DISABLED;
-		// TODO: This should become a uint8_t for the state being between disabled, auto, and teleop
 	// Period of a loop in microseconds
 	uint32_t period;
 

@@ -15,16 +15,16 @@ namespace GAMEPAD {
 		constexpr uint8_t RT = 7;
 		constexpr uint8_t LB = 8;
 		constexpr uint8_t RB = 9;
-		constexpr uint8_t SELECT = 10;
-		constexpr uint8_t START = 11;
+		constexpr uint8_t SELECT = 10; // 6
+		constexpr uint8_t START = 11; // 7
 		constexpr uint8_t LA = 13;
 		constexpr uint8_t RA = 14;
 	}
 	namespace AXES {
 		constexpr uint8_t LX = 0;
 		constexpr uint8_t LY = 1;
-		constexpr uint8_t RX = 2;
-		constexpr uint8_t RY = 3;
+		constexpr uint8_t RX = 2; // 3
+		constexpr uint8_t RY = 3; // 4
 		constexpr uint8_t DX = 6;
 		constexpr uint8_t DY = 7;
 

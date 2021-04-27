@@ -28,4 +28,25 @@ class PWMSpeedController : public SpeedController, public MotorSafety {
 	 * @brief Function to stop the motor
 	 */
 	void StopMotor();
+	
+	/**
+	 * @brief Set the Max PWM microseconds
+	 * 
+	 * @param max_us Maximum output period in microseconds
+	 */
+	void SetMaxUs(uint16_t max_us);
+	
+	/**
+	 * @brief Set the Center PWM microseconds
+	 * 
+	 * @param max_us Center output period in microseconds
+	 */
+	void SetCenterUs(uint16_t center_us);
+	
+	/**
+	 * @brief Set the Min PWM microseconds
+	 * 
+	 * @param max_us Minimum output period in microseconds
+	 */
+	void SetMinUs(uint16_t max_us);
 };
