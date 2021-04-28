@@ -19,9 +19,9 @@ void PWMSpeedController::SetMaxUs(uint16_t max_us) {
 }
 
 void PWMSpeedController::SetCenterUs(uint16_t center_us) {
-	pwm->SetMaxUs(center_us);
+	pwm->SetCenterUs(center_us);
 }
 
 void PWMSpeedController::SetMinUs(uint16_t min_us) {
-	pwm->SetMaxUs(min_us);
+	pwm->SetMinUs(min_us);
 }

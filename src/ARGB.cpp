@@ -3,7 +3,7 @@
 #include "ARGB.h"
 
 
-ARGB::ARGB(int32_t ledCount) {
+ARGB::ARGB(uint8_t ledCount) {
 	// Save the given LED count
 	ARGB::ledCount = ledCount;
 
